@@ -1,0 +1,19 @@
+spring:
+  application:
+    # 服务逻辑名称
+    name: light-reading-cloud-gateway
+
+  cloud:
+    nacos:
+      # 配置中心
+      config:
+        server-addr: ${nacos.server-addr}
+        file-extension: yml
+        refresh: true
+        shared-dataids: light-reading-cloud-gateway.yml
+        namespace: ${nacos.namespace}
+
+      # 注册中心
+      discovery:
+        server-addr: ${nacos.server-addr}
+        namespace: ${nacos.namespace}

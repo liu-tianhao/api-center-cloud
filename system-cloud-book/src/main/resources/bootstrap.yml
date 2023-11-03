@@ -1,0 +1,19 @@
+spring:
+  # 服务逻辑名称
+  application:
+    name: light-reading-cloud-book
+
+  cloud:
+    nacos:
+      # 配置中心
+      config:
+        server-addr: ${nacos.server-addr}
+        file-extension: yml
+        refresh: true
+        shared-dataids: light-reading-cloud-book.yml
+        namespace: ${nacos.namespace}
+
+      # 注册中心
+      discovery:
+        server-addr: ${nacos.server-addr}
+        namespace: ${nacos.namespace}
