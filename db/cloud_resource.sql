@@ -18,6 +18,10 @@
 --
 -- Table structure for table `index_page_config`
 --
+CREATE database if NOT EXISTS `cloud` default character set utf8mb4 collate utf8mb4_unicode_ci;
+use `cloud`;
+
+SET NAMES utf8mb4;
 
 DROP TABLE IF EXISTS `index_page_config`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -303,13 +307,13 @@ CREATE TABLE `hot_search_word` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='热搜词配置';
 
-INSERT INTO reading_cloud_resource.hot_search_word (id, frequency, name, create_time, update_time) VALUES(1, 999, '美女', '2020-05-29 18:29:04.0', '2020-05-29 18:29:04.0');
-INSERT INTO reading_cloud_resource.hot_search_word (id, frequency, name, create_time, update_time) VALUES(5, 555, '极品', '2020-05-29 18:29:04.0', '2020-05-29 18:29:04.0');
-INSERT INTO reading_cloud_resource.hot_search_word (id, frequency, name, create_time, update_time) VALUES(7, 321, '最强天才', '2020-05-29 18:29:04.0', '2020-05-29 18:29:04.0');
-INSERT INTO reading_cloud_resource.hot_search_word (id, frequency, name, create_time, update_time) VALUES(4, 142, '仙女逆袭记', '2020-05-29 18:29:04.0', '2020-05-29 18:29:04.0');
-INSERT INTO reading_cloud_resource.hot_search_word (id, frequency, name, create_time, update_time) VALUES(6, 87, '屌丝', '2020-05-29 18:29:04.0', '2020-05-29 18:29:04.0');
-INSERT INTO reading_cloud_resource.hot_search_word (id, frequency, name, create_time, update_time) VALUES(3, 62, '武魂', '2020-05-29 18:29:04.0', '2020-05-29 18:29:04.0');
-INSERT INTO reading_cloud_resource.hot_search_word (id, frequency, name, create_time, update_time) VALUES(2, 15, '寂寞', '2020-05-29 18:29:04.0', '2020-05-29 18:29:04.0');
+INSERT INTO hot_search_word (id, frequency, name, create_time, update_time) VALUES(1, 999, '美女', '2020-05-29 18:29:04.0', '2020-05-29 18:29:04.0');
+INSERT INTO hot_search_word (id, frequency, name, create_time, update_time) VALUES(5, 555, '极品', '2020-05-29 18:29:04.0', '2020-05-29 18:29:04.0');
+INSERT INTO hot_search_word (id, frequency, name, create_time, update_time) VALUES(7, 321, '最强天才', '2020-05-29 18:29:04.0', '2020-05-29 18:29:04.0');
+INSERT INTO hot_search_word (id, frequency, name, create_time, update_time) VALUES(4, 142, '仙女逆袭记', '2020-05-29 18:29:04.0', '2020-05-29 18:29:04.0');
+INSERT INTO hot_search_word (id, frequency, name, create_time, update_time) VALUES(6, 87, '屌丝', '2020-05-29 18:29:04.0', '2020-05-29 18:29:04.0');
+INSERT INTO hot_search_word (id, frequency, name, create_time, update_time) VALUES(3, 62, '武魂', '2020-05-29 18:29:04.0', '2020-05-29 18:29:04.0');
+INSERT INTO hot_search_word (id, frequency, name, create_time, update_time) VALUES(2, 15, '寂寞', '2020-05-29 18:29:04.0', '2020-05-29 18:29:04.0');
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

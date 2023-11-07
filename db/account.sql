@@ -18,6 +18,10 @@
 --
 -- Table structure for table `user`
 --
+CREATE database if NOT EXISTS `cloud` default character set utf8mb4 collate utf8mb4_unicode_ci;
+use `cloud`;
+
+SET NAMES utf8mb4;
 
 DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
