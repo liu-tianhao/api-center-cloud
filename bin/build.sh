@@ -12,9 +12,9 @@ else
   echo "Directory does not exist."
 fi
 
-unzip /opt/novel-cloud/docker.zip -d /opt/novel-cloud &&
+unzip /opt/api-center-cloud/docker.zip -d /opt/api-center-cloud &&
 
-cd /opt/novel-cloud/docker &&
+cd /opt/api-center-cloud/docker &&
 
 if docker-compose ps | grep "system-cloud-gateway"; then
   docker-compose -f /opt/api-center-cloud/docker/docker-compose.yml down
