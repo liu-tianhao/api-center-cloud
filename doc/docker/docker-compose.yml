@@ -11,16 +11,13 @@ services:
       - NACOS_ADDR=base-nacos-server:8848
     ports:
       - "8010:8010"
-    depends_on:
-      base-nacos-server:
-        condition: service_healthy
     networks:
       - api-center-net
     healthcheck:
       test:
         [
-            "CMD-SHELL",
-            "curl -s -I http://localhost:8888 | grep -q 'HTTP/1.1 404 Not Found'",
+          "CMD-SHELL",
+          "curl -s -I http://localhost:8888 | grep -q 'HTTP/1.1 404 Not Found'",
         ]
       interval: 10s
       timeout: 2s
@@ -36,16 +33,13 @@ services:
       - NACOS_ADDR=base-nacos-server:8848
     ports:
       - "8001:8001"
-    depends_on:
-      base-nacos-server:
-        condition: service_healthy
     networks:
       - api-center-net
     healthcheck:
       test:
         [
-            "CMD-SHELL",
-            "curl -s -I http://localhost:9001 | grep -q 'HTTP/1.1 404 Not Found'",
+          "CMD-SHELL",
+          "curl -s -I http://localhost:9001 | grep -q 'HTTP/1.1 404 Not Found'",
         ]
       interval: 10s
       timeout: 2s
@@ -61,16 +55,13 @@ services:
       - NACOS_ADDR=base-nacos-server:8848
     ports:
       - "9030:9030"
-    depends_on:
-      base-nacos-server:
-        condition: service_healthy
     networks:
       - api-center-net
     healthcheck:
       test:
         [
-            "CMD-SHELL",
-            "curl -s -I http://localhost:9030 | grep -q 'HTTP/1.1 404 Not Found'",
+          "CMD-SHELL",
+          "curl -s -I http://localhost:9030 | grep -q 'HTTP/1.1 404 Not Found'",
         ]
       interval: 10s
       timeout: 2s
@@ -86,17 +77,18 @@ services:
       - NACOS_ADDR=base-nacos-server:8848
     ports:
       - "8003:8003"
-    depends_on:
-      base-nacos-server:
-        condition: service_healthy
     networks:
-      - novelnet
+      - api-center-net
     healthcheck:
       test:
         [
-            "CMD-SHELL",
-            "curl -s -I http://localhost:9020 | grep -q 'HTTP/1.1 404 Not Found'",
+          "CMD-SHELL",
+          "curl -s -I http://localhost:9020 | grep -q 'HTTP/1.1 404 Not Found'",
         ]
       interval: 10s
       timeout: 2s
       retries: 120
+
+networks:
+  api-center-net:
+    driver: bridge
