@@ -1,0 +1,75 @@
+version: '3.9'
+
+services:
+  base-mysql:
+    container_name: base-mysql
+    image: mysql:${MYSQL_VERSION}
+    restart: always
+    hostname: base-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - "/data/docker/mysql/data:/var/lib/mysql"
+      - "/data/docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql"
+    command: mysqld --max_allowed_packet=100M
+    ports:
+      - "3306:3306"
+    networks:
+      - api-center-net
+
+  base-redis:
+    container_name: base-redis
+    image: redis:${REDIS_VERSION}
+    restart: always
+    hostname: base-redis
+    command: redis-server --save 60 1 --loglevel warning --requirepass "${REDIS_PASSWORD}"
+    ports:
+      - "6379:6379"
+    networks:
+      - api-center-net
+
+  base-nacos-server:
+    container_name: base-nacos-server
+    image: nacos/nacos-server:${NACOS_VERSION}
+    restart: always
+    hostname: base-nacos-server
+    environment:
+      - PREFER_HOST_MODE=hostname
+      - MODE=standalone
+      - SPRING_DATASOURCE_PLATFORM=mysql
+      - MYSQL_SERVICE_HOST=novel-mysql
+      - MYSQL_SERVICE_DB_NAME=nacos
+      - MYSQL_SERVICE_PORT=3306
+      - MYSQL_SERVICE_USER=root
+      - MYSQL_SERVICE_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_SERVICE_DB_PARAM=characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
+      - NACOS_AUTH_IDENTITY_KEY=xxyopen
+      - NACOS_AUTH_IDENTITY_VALUE=xxyopen
+      - NACOS_AUTH_TOKEN=SecretKey012345678901234567890123456789012345678901234567890123456789
+      - JVM_XMS=125M
+      - JVM_XMX=125M
+      - JVM_XMN=50M
+      - JVM_MS=50M
+      - JVM_MMS=50M
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+    depends_on:
+      - base-mysql
+    networks:
+      - api-center-net
+    healthcheck:
+      test:
+        [
+            "CMD-SHELL",
+            "curl -s -I http://localhost:8848 | grep -q 'HTTP/1.1 404'",
+        ]
+      interval: 30s
+      timeout: 2s
+      retries: 120
+
+
+
+networks:
+  api-center-net:
+    driver: bridge
