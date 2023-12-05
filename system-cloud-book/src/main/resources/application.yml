@@ -8,7 +8,7 @@ spring:
   datasource:
     book-center:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://${mysql.host}:${mysql.port}/reading_cloud_resource?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+      url: jdbc:mysql://${mysql.host}:${mysql.port}/cloud?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
       username: ${mysql.username}
       password: ${mysql.password}
       initial-size: 5

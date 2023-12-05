@@ -15,7 +15,7 @@ services:
     ports:
       - "3306:3306"
     networks:
-      - api-center-net
+      - base-net
 
   base-redis:
     container_name: base-redis
@@ -26,7 +26,7 @@ services:
     ports:
       - "6379:6379"
     networks:
-      - api-center-net
+      - base-net
 
   base-nacos-server:
     container_name: base-nacos-server
@@ -37,7 +37,7 @@ services:
       - PREFER_HOST_MODE=hostname
       - MODE=standalone
       - SPRING_DATASOURCE_PLATFORM=mysql
-      - MYSQL_SERVICE_HOST=novel-mysql
+      - MYSQL_SERVICE_HOST=base-mysql
       - MYSQL_SERVICE_DB_NAME=nacos
       - MYSQL_SERVICE_PORT=3306
       - MYSQL_SERVICE_USER=root
@@ -57,7 +57,7 @@ services:
     depends_on:
       - base-mysql
     networks:
-      - api-center-net
+      - base-net
     healthcheck:
       test:
         [
@@ -71,5 +71,5 @@ services:
 
 
 networks:
-  api-center-net:
+  base-net:
     driver: bridge

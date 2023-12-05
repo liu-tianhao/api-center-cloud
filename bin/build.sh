@@ -18,7 +18,7 @@ cd /opt/api-center-cloud/docker &&
 
 if docker-compose ps | grep "system-cloud-gateway"; then
   docker-compose -f /opt/api-center-cloud/docker/docker-compose.yml down
-  docker rmi $(docker images | grep "novel-" | awk '{print $3}')
+  docker rmi $(docker images | grep "system-cloud" | awk '{print $3}')
 else
   echo "The container is not running."
 fi
